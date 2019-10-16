@@ -1,0 +1,3 @@
+const POST_READING = 'POST_READING';
+
+export {POST_READING};

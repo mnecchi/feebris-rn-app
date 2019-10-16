@@ -7,12 +7,16 @@
  */
 
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {SafeAreaView, StatusBar, Button} from 'react-native';
 import {fetchReadings} from './src/store/actions';
+import {getReadings} from './src/store/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
+
+  const readings = useSelector(getReadings);
+  console.log(readings);
 
   return (
     <>

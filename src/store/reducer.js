@@ -1,11 +1,15 @@
 import {POST_READING, FETCH_READINGS} from './constants';
 
 const reducer = (state = {}, action) => {
+  if (action.status !== 'success') {
+    return state;
+  }
+
   switch (action.type) {
     case POST_READING:
       return {
         ...state,
-        reading: {
+        last: {
           ...action.payload,
         },
       };

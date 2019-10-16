@@ -25,14 +25,20 @@ const postReading = reading => dispatch =>
       // dispatch the redux action
       dispatch({
         type: POST_READING,
+        status: 'success',
         payload: {
           ...item,
         },
       });
     })
     .catch(err => {
-      // TODO: handle the error
-      console.log(err.message);
+      dispatch({
+        type: POST_READING,
+        status: 'error',
+        payload: {
+          message: err.message,
+        },
+      });
     });
 
 /**
@@ -54,12 +60,18 @@ const fetchReadings = () => dispatch =>
       // dispatch the redux action
       dispatch({
         type: FETCH_READINGS,
+        status: 'success',
         payload: {items},
       });
     })
     .catch(err => {
-      // TODO: handle the error
-      console.log(err.message);
+      dispatch({
+        type: FETCH_READINGS,
+        status: 'error',
+        payload: {
+          message: err.message,
+        },
+      });
     });
 
 export {postReading, fetchReadings};

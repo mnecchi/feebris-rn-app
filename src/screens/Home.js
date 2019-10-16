@@ -1,16 +1,12 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {
-  SafeAreaView,
-  StatusBar,
-  View,
-  Alert,
-  Text,
-  TextInput,
-  Switch,
-  TouchableHighlight,
-} from 'react-native';
+import {SafeAreaView, StatusBar, Alert} from 'react-native';
 import {postReading} from '../store/actions';
+import Temperature from './components/Temperature';
+import Cough from './components/Cough';
+import FeverInLast5Days from './components/FeverInLast5Days';
+import Button from './components/Button';
+import {homeStyle} from './styles';
 
 const Home = ({navigation}) => {
   const [disabled, setDisabled] = useState(false);
@@ -38,37 +34,31 @@ const Home = ({navigation}) => {
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <SafeAreaView style={{flex: 1}}>
-        <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
-          <View>
-            <Text>🌡 Temperature</Text>
-            <TextInput
-              value={temperature}
-              disabled={disabled}
-              onChangeText={setTemperature}
-              keyboardType="decimal-pad"
-              style={{borderColor: '#ccc', borderWidth: 1, borderRadius: 4}}
-            />
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text>🤧Cough?</Text>
-            <Switch value={cough} onValueChange={setCough} disabled={disabled} />
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text>🤒Fever for more than 5 days?</Text>
-            <Switch
-              value={feverInLast5Days}
-              onValueChange={setFeverInLast5Days}
-              disabled={disabled}
-            />
-          </View>
-          <TouchableHighlight
-            onPress={onPress}
-            style={{padding: 8, backgroundColor: 'blue', borderRadius: 8}}
-            disabled={disabled}>
-            <Text style={{color: 'white'}}>Flu??</Text>
-          </TouchableHighlight>
-        </View>
+      <SafeAreaView style={homeStyle.container}>
+        <Temperature
+          temperature={temperature}
+          disabled={disabled}
+          setTemperature={setTemperature}
+          inputStyle={homeStyle.temperatureInput}
+        />
+        <Cough
+          cough={cough}
+          disabled={disabled}
+          setCough={setCough}
+          containerStyle={homeStyle.switchContainer}
+        />
+        <FeverInLast5Days
+          feverInLast5Days={feverInLast5Days}
+          disabled={disabled}
+          setFeverInLast5Days={setFeverInLast5Days}
+          containerStyle={homeStyle.switchContainer}
+        />
+        <Button
+          disabled={disabled}
+          onPress={onPress}
+          buttonStyle={homeStyle.button}
+          textStyle={homeStyle.buttonText}
+        />
       </SafeAreaView>
     </>
   );

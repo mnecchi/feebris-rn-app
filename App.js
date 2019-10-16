@@ -5,6 +5,12 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Home from './src/screens/Home';
 import Results from './src/screens/Results';
 
+const headerBackStyle = tintColor => ({
+  color: tintColor,
+  fontWeight: 'bold',
+  paddingLeft: 8,
+});
+
 const AppNavigator = createStackNavigator(
   {
     Home: {
@@ -31,9 +37,7 @@ const AppNavigator = createStackNavigator(
         paddingLeft: 4,
       },
       headerBackImage: ({tintColor}) => (
-        <Text style={{color: tintColor, fontWeight: 'bold', paddingLeft: 8}}>
-          {'<'}
-        </Text>
+        <Text style={headerBackStyle(tintColor)}>{'<'}</Text>
       ),
     },
   },

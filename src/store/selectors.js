@@ -17,7 +17,7 @@ const isFlu = createSelector(
 
 const getLastReadings = createSelector(
   getReadings,
-  readings => readings.slice(0, 10),
+  readings => readings.slice(0, 20),
 );
 
 export {getReadings, isFlu, getLastReadings};

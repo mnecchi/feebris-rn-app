@@ -1,6 +1,10 @@
 import {getReadings} from '../selectors';
 
 describe('getReadings selector', () => {
+  it('should retun an empty array if no readings in the state', () => {
+    expect(getReadings({})).toEqual([]);
+  });
+
   it('should return all readings sorted by createdAt', () => {
     const mockedReadings = [
       {

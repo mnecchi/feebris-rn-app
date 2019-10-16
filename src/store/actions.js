@@ -6,32 +6,32 @@ import {API_URL} from 'react-native-dotenv';
  * @param {*} reading
  */
 const postReading = reading => dispatch =>
-  fetch(`${API_URL}/readings`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(reading),
-  })
-    .then(response => {
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch(`${API_URL}/readings`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reading),
+      });
+
+      const json = await response.json();
+
       if (!response.ok) {
-        // an error occured during the API call
-        throw new Error(`Error ${response.status}`);
+        throw new Error(`${json.message} (Status Code: ${response.status})`);
       }
-      // get the response json
-      return response.json();
-    })
-    .then(item => {
-      // dispatch the redux action
+
       dispatch({
         type: POST_READING,
         status: 'success',
         payload: {
-          ...item,
+          ...json,
         },
       });
-    })
-    .catch(err => {
+
+      resolve();
+    } catch (err) {
       dispatch({
         type: POST_READING,
         status: 'error',
@@ -39,32 +39,32 @@ const postReading = reading => dispatch =>
           message: err.message,
         },
       });
-    });
+
+      reject(err);
+    }
+  });
 
 /**
  * Get the list of all the readings
  */
 const fetchReadings = () => dispatch =>
-  fetch(`${API_URL}/readings`, {
-    method: 'GET',
-  })
-    .then(response => {
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch(`${API_URL}/readings`, {method: 'GET'});
+      const json = await response.json();
+
       if (!response.ok) {
-        // an error occured during the API call
-        throw new Error(`Error ${response.status}`);
+        throw new Error(`${json.message} (Status Code: ${response.status})`);
       }
-      // get the response json
-      return response.json();
-    })
-    .then(items => {
-      // dispatch the redux action
+
       dispatch({
         type: FETCH_READINGS,
         status: 'success',
-        payload: {items},
+        payload: {items: json},
       });
-    })
-    .catch(err => {
+
+      resolve();
+    } catch (err) {
       dispatch({
         type: FETCH_READINGS,
         status: 'error',
@@ -72,6 +72,9 @@ const fetchReadings = () => dispatch =>
           message: err.message,
         },
       });
-    });
+
+      reject(err);
+    }
+  });
 
 export {postReading, fetchReadings};

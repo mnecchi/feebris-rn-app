@@ -12,23 +12,30 @@ afterEach(() => {
 
 describe('postReading action creator', () => {
   it('should dispatch an action with error status', async () => {
-    global.fetch = jest
-      .fn()
-      .mockImplementation(() => Promise.resolve({ok: false, status: 400}));
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: false,
+        status: 400,
+        json: () => ({message: 'Network Error'}),
+      }),
+    );
     const store = mockStore({});
 
-    await store.dispatch(
-      postReading({temperature: 38, cough: true, feverInLast5Days: true}),
-    );
-
-    const [action] = store.getActions();
-    expect(action).toEqual({
-      type: POST_READING,
-      status: 'error',
-      payload: {
-        message: 'Error 400',
-      },
-    });
+    try {
+      await store.dispatch(
+        postReading({temperature: 38, cough: true, feverInLast5Days: true}),
+      );
+    } catch (_) {
+    } finally {
+      const [action] = store.getActions();
+      expect(action).toEqual({
+        type: POST_READING,
+        status: 'error',
+        payload: {
+          message: 'Network Error (Status Code: 400)',
+        },
+      });
+    }
   });
 
   it('should dispatch an action with success status', async () => {
@@ -48,42 +55,53 @@ describe('postReading action creator', () => {
       );
 
     const store = mockStore({});
-    await store.dispatch(
-      postReading({
-        temperature: mockedReading.temperature,
-        cough: mockedReading.cough,
-        feverInLast5Days: mockedReading.feverInLast5Days,
-      }),
-    );
 
-    const [action] = store.getActions();
-    expect(action).toEqual({
-      type: POST_READING,
-      status: 'success',
-      payload: {
-        ...mockedReading,
-      },
-    });
+    try {
+      await store.dispatch(
+        postReading({
+          temperature: mockedReading.temperature,
+          cough: mockedReading.cough,
+          feverInLast5Days: mockedReading.feverInLast5Days,
+        }),
+      );
+    } catch (_) {
+    } finally {
+      const [action] = store.getActions();
+      expect(action).toEqual({
+        type: POST_READING,
+        status: 'success',
+        payload: {
+          ...mockedReading,
+        },
+      });
+    }
   });
 });
 
 describe('fetchReadings action creator', () => {
   it('should dispatch an action with error status', async () => {
-    global.fetch = jest
-      .fn()
-      .mockImplementation(() => Promise.resolve({ok: false, status: 400}));
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        ok: false,
+        status: 400,
+        json: () => ({message: 'Network Error'}),
+      }),
+    );
     const store = mockStore({});
 
-    await store.dispatch(fetchReadings());
-
-    const [action] = store.getActions();
-    expect(action).toEqual({
-      type: FETCH_READINGS,
-      status: 'error',
-      payload: {
-        message: 'Error 400',
-      },
-    });
+    try {
+      await store.dispatch(fetchReadings());
+    } catch (_) {
+    } finally {
+      const [action] = store.getActions();
+      expect(action).toEqual({
+        type: FETCH_READINGS,
+        status: 'error',
+        payload: {
+          message: 'Network Error (Status Code: 400)',
+        },
+      });
+    }
   });
 
   it('should dispatch an action with success status', async () => {
@@ -113,15 +131,18 @@ describe('fetchReadings action creator', () => {
       );
 
     const store = mockStore({});
-    await store.dispatch(fetchReadings());
-
-    const [action] = store.getActions();
-    expect(action).toEqual({
-      type: FETCH_READINGS,
-      status: 'success',
-      payload: {
-        items: mockedReadings,
-      },
-    });
+    try {
+      await store.dispatch(fetchReadings());
+    } catch (_) {
+    } finally {
+      const [action] = store.getActions();
+      expect(action).toEqual({
+        type: FETCH_READINGS,
+        status: 'success',
+        payload: {
+          items: mockedReadings,
+        },
+      });
+    }
   });
 });

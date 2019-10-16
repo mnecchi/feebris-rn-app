@@ -2,9 +2,10 @@ import reducer from '../reducer';
 import {POST_READING, FETCH_READINGS} from '../constants';
 
 describe('reducer', () => {
-  it('should return the same state if the status is not success', () => {
-    const state = {test: true};
-    expect(reducer(state, {type: 'Unknown', status: 'unknown'})).toBe(state);
+  it('should return an empty object if state is undefined', () => {
+    expect(reducer(undefined, {type: 'Unknown', status: 'success'})).toEqual(
+      {},
+    );
   });
 
   it('should return the same state if the action is unknown', () => {
@@ -12,8 +13,7 @@ describe('reducer', () => {
     expect(reducer(state, {type: 'Unknown', status: 'success'})).toBe(state);
   });
 
-  it('should set the last reading in the state', () => {
-    const state = {test: true};
+  describe('POST_READING', () => {
     const mockedReading = {
       id: 'abcdef1234',
       cough: false,
@@ -23,24 +23,41 @@ describe('reducer', () => {
       createdAt: 1111111,
     };
 
-    expect(
-      reducer(state, {
-        type: POST_READING,
-        status: 'success',
-        payload: {
+    it('should remove the last reading if status is error', () => {
+      const state = {last: {...mockedReading}};
+
+      expect(
+        reducer(state, {
+          type: POST_READING,
+          status: 'error',
+          payload: {
+            message: 'Generic Error',
+          },
+        }).last,
+      ).toBeUndefined();
+    });
+
+    it('should set the last reading in the state', () => {
+      const state = {test: true};
+
+      expect(
+        reducer(state, {
+          type: POST_READING,
+          status: 'success',
+          payload: {
+            ...mockedReading,
+          },
+        }),
+      ).toEqual({
+        test: true,
+        last: {
           ...mockedReading,
         },
-      }),
-    ).toEqual({
-      test: true,
-      last: {
-        ...mockedReading,
-      },
+      });
     });
   });
 
-  it('should set the list of reading in the state', () => {
-    const state = {test: true};
+  describe('FETCH_READINGS', () => {
     const mockedReadings = [
       {
         id: 'abcdef1234',
@@ -60,17 +77,35 @@ describe('reducer', () => {
       },
     ];
 
-    expect(
-      reducer(state, {
-        type: FETCH_READINGS,
-        status: 'success',
-        payload: {
-          items: mockedReadings,
-        },
-      }),
-    ).toEqual({
-      test: true,
-      readings: mockedReadings,
+    it('should remove the readings if status is error', () => {
+      const state = {readings: mockedReadings};
+
+      expect(
+        reducer(state, {
+          type: FETCH_READINGS,
+          status: 'error',
+          payload: {
+            message: 'Generic Error',
+          },
+        }).readings,
+      ).toBeUndefined();
+    });
+
+    it('should set the list of reading in the state', () => {
+      const state = {test: true};
+
+      expect(
+        reducer(state, {
+          type: FETCH_READINGS,
+          status: 'success',
+          payload: {
+            items: mockedReadings,
+          },
+        }),
+      ).toEqual({
+        test: true,
+        readings: mockedReadings,
+      });
     });
   });
 });

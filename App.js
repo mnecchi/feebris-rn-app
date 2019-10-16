@@ -9,7 +9,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {SafeAreaView, StatusBar, Button} from 'react-native';
-import {postReading} from './src/store/actions';
+import {fetchReadings} from './src/store/actions';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,10 +18,7 @@ const App = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <Button
-          title="Test!"
-          onPress={() => dispatch(postReading({test: true}))}
-        />
+        <Button title="Test!" onPress={() => dispatch(fetchReadings())} />
       </SafeAreaView>
     </>
   );

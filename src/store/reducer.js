@@ -1,4 +1,4 @@
-import {POST_READING} from './constants';
+import {POST_READING, FETCH_READINGS} from './constants';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -8,6 +8,11 @@ const reducer = (state = {}, action) => {
         reading: {
           ...action.payload,
         },
+      };
+    case FETCH_READINGS:
+      return {
+        ...state,
+        readings: action.payload.items,
       };
     default:
       return state;

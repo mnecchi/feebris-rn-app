@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {SafeAreaView, StatusBar, Alert} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, Alert} from 'react-native';
 import {postReading} from '../store/actions';
 import Temperature from './components/Temperature';
 import Cough from './components/Cough';
@@ -35,30 +35,41 @@ const Home = ({navigation}) => {
     <>
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={homeStyle.container}>
-        <Temperature
-          temperature={temperature}
-          disabled={disabled}
-          setTemperature={setTemperature}
-          inputStyle={homeStyle.temperatureInput}
-        />
-        <Cough
-          cough={cough}
-          disabled={disabled}
-          setCough={setCough}
-          containerStyle={homeStyle.switchContainer}
-        />
-        <FeverInLast5Days
-          feverInLast5Days={feverInLast5Days}
-          disabled={disabled}
-          setFeverInLast5Days={setFeverInLast5Days}
-          containerStyle={homeStyle.switchContainer}
-        />
-        <Button
-          disabled={disabled}
-          onPress={onPress}
-          buttonStyle={homeStyle.button}
-          textStyle={homeStyle.buttonText}
-        />
+        <ScrollView
+          style={homeStyle.scrollContainer}
+          contentContainerStyle={homeStyle.scrollContent}>
+          <Temperature
+            temperature={temperature}
+            disabled={disabled}
+            setTemperature={setTemperature}
+            containerStyle={homeStyle.temperatureContainer}
+            textStyle={homeStyle.temperatureText}
+            inputStyle={homeStyle.temperatureInput}
+            inputContainerStyle={homeStyle.temperatureInputContainer}
+          />
+          <Cough
+            cough={cough}
+            disabled={disabled}
+            setCough={setCough}
+            containerStyle={homeStyle.coughContainer}
+            textStyle={homeStyle.coughText}
+            switchContainerStyle={homeStyle.coughSwitchContainer}
+          />
+          <FeverInLast5Days
+            feverInLast5Days={feverInLast5Days}
+            disabled={disabled}
+            setFeverInLast5Days={setFeverInLast5Days}
+            containerStyle={homeStyle.feverContainer}
+            textStyle={homeStyle.feverText}
+            switchContainerStyle={homeStyle.feverSwitchContainer}
+          />
+          <Button
+            disabled={disabled}
+            onPress={onPress}
+            buttonStyle={homeStyle.buttonContainer}
+            textStyle={homeStyle.buttonText}
+          />
+        </ScrollView>
       </SafeAreaView>
     </>
   );

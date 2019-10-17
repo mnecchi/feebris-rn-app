@@ -6,14 +6,19 @@ const FeverInLast5Days = ({
   setFeverInLast5Days,
   disabled,
   containerStyle,
+  textStyle,
+  switchContainerStyle,
 }) => (
   <View style={containerStyle}>
-    <Text>🤒Fever for more than 5 days?</Text>
-    <Switch
-      value={feverInLast5Days}
-      onValueChange={setFeverInLast5Days}
-      disabled={disabled}
-    />
+    <Text style={textStyle}>Fever in the last 5 days?</Text>
+    <View style={switchContainerStyle}>
+      <Text style={textStyle}>🤒</Text>
+      <Switch
+        value={feverInLast5Days}
+        onValueChange={setFeverInLast5Days}
+        disabled={disabled}
+      />
+    </View>
   </View>
 );
 

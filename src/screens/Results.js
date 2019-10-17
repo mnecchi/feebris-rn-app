@@ -2,7 +2,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {StatusBar, SafeAreaView, ScrollView} from 'react-native';
-import {isFlu as isFluSelector, getLastReadings} from '../store/selectors';
+import {isFlu as isFluSelector, getLatestReadings} from '../store/selectors';
 import {fetchReadings} from '../store/actions';
 import FluResult from './components/FluResult';
 import ReadingsTable from './components/ReadingsTable';
@@ -11,9 +11,10 @@ import {resultsStyle} from './styles';
 const Results = () => {
   const dispatch = useDispatch();
   const isFlu = useSelector(isFluSelector);
-  const readings = useSelector(getLastReadings);
+  const readings = useSelector(getLatestReadings);
 
   useEffect(() => {
+    // loads reading at mount
     dispatch(fetchReadings());
   }, []);
 
@@ -24,10 +25,15 @@ const Results = () => {
         <FluResult
           isFlu={isFlu}
           containerStyle={resultsStyle.fluResultContainer}
+          textStyle={resultsStyle.fluResultText}
+          textFluStyle={resultsStyle.fluResultFlu}
+          textNoFluStyle={resultsStyle.fluResultNoFlu}
         />
-        <ScrollView>
+        <ScrollView style={resultsStyle.tableContainer}>
           <ReadingsTable
             readings={readings}
+            headerStyle={resultsStyle.readingsTableHeader}
+            cellStyle={resultsStyle.readingTableCell}
             tableStyle={resultsStyle.readingsTable}
           />
         </ScrollView>

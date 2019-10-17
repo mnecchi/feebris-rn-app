@@ -3,7 +3,7 @@ import {API_URL} from 'react-native-dotenv';
 
 /**
  * Call the API and post a reading
- * @param {*} reading
+ * @param {object} reading
  */
 const postReading = reading => dispatch =>
   new Promise(async (resolve, reject) => {

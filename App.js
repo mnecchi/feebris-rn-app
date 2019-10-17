@@ -5,6 +5,8 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Home from './src/screens/Home';
 import Results from './src/screens/Results';
 
+console.disableYellowBox = true;
+
 const headerBackStyle = tintColor => ({
   color: tintColor,
   fontWeight: 'bold',

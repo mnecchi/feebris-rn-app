@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const labelText = {fontSize: 30, fontWeight: 'bold'};
+const labelText = {fontSize: 30, fontWeight: 'bold', color: '#444'};
 const fieldContainer = {
   justifyContent: 'center',
   alignItems: 'center',
@@ -41,6 +41,9 @@ const homeStyle = StyleSheet.create({
     width: 100,
     margin: 8,
   },
+  temperatureInputError: {
+    borderColor: 'red',
+  },
   temperatureInputContainer: iconInputContainer,
   // COUGH
   coughContainer: switchContainer,
@@ -66,8 +69,38 @@ const homeStyle = StyleSheet.create({
 
 const resultsStyle = StyleSheet.create({
   container: {flex: 1, flexDirection: 'column'},
-  fluResultContainer: {alignItems: 'center'},
-  readingsTable: {borderWidth: 2, borderColor: '#c8e1ff'},
+  fluResultContainer: {
+    alignItems: 'center',
+    marginTop: 32,
+    marginHorizontal: 16,
+    paddingBottom: 32,
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+  },
+  fluResultText: {
+    ...labelText,
+  },
+  fluResultFlu: {
+    color: 'red',
+  },
+  fluResultNoFlu: {
+    color: 'green',
+  },
+  readingsTable: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  readingsTableHeader: {
+    backgroundColor: 'rgba(60, 142, 183, 0.5)',
+  },
+  readingTableCell: {
+    margin: 8,
+    textAlign: 'center',
+  },
+  tableContainer: {
+    marginTop: 16,
+    marginHorizontal: 8,
+  },
 });
 
 export {homeStyle, resultsStyle};

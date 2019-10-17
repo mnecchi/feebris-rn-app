@@ -1,7 +1,7 @@
 import React from 'react';
 import {Table, Row, Rows} from 'react-native-table-component';
 
-const ReadingsTable = ({readings, tableStyle}) => {
+const ReadingsTable = ({readings, tableStyle, cellStyle, headerStyle}) => {
   if (!Array.isArray(readings) || readings.length === 0) {
     return null;
   }
@@ -21,15 +21,12 @@ const ReadingsTable = ({readings, tableStyle}) => {
   return (
     <Table borderStyle={tableStyle}>
       <Row
-        data={[
-          'date',
-          'temperature',
-          'cough?',
-          'fever in the last 5 days',
-          'is flu?',
-        ]}
+        style={headerStyle}
+        data={['date', 'temp.', 'cough', '5 days fever', 'is flu']}
+        flexArr={[2, 1, 1, 1, 1]}
+        textStyle={cellStyle}
       />
-      <Rows data={data} />
+      <Rows textStyle={cellStyle} data={data} flexArr={[2, 1, 1, 1, 1]} />
     </Table>
   );
 };

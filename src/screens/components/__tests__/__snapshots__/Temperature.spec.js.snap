@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render successfully 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+      "margin": 16,
+      "maxWidth": "80%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#444",
+        "fontSize": 30,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Temperature
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginTop": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#444",
+          "fontSize": 30,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      🌡
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      keyboardType="decimal-pad"
+      onChangeText={[MockFunction]}
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "borderColor": "red",
+        }
+      }
+      underlineColorAndroid="transparent"
+      value={36.5}
+    />
+  </View>
+</View>
+`;

@@ -10,7 +10,7 @@ const FeverInLast5Days = ({
   switchContainerStyle,
 }) => (
   <View style={containerStyle}>
-    <Text style={textStyle}>Fever in the last 5 days?</Text>
+    <Text style={textStyle}>{'Fever in the\nlast 5 days?'}</Text>
     <View style={switchContainerStyle}>
       <Text style={textStyle}>🤒</Text>
       <Switch

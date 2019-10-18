@@ -19,10 +19,33 @@ const getLatestReadings = createSelector(
 // get the current reading
 const getLastReading = state => state.last || {};
 
+const getTemperature = createSelector(
+  getLastReading,
+  reading => reading.temperature || '',
+);
+
+const getCough = createSelector(
+  getLastReading,
+  reading => !!reading.cough,
+);
+
+const getFeverInLast5Days = createSelector(
+  getLastReading,
+  reading => !!reading.feverInLast5Days,
+);
+
 // return true if flu
-const isFlu = createSelector(
+const getIsFlu = createSelector(
   getLastReading,
   reading => !!reading.isFlu,
 );
 
-export {getReadings, isFlu, getLatestReadings};
+export {
+  getReadings,
+  getIsFlu,
+  getLatestReadings,
+  getLastReading,
+  getTemperature,
+  getCough,
+  getFeverInLast5Days,
+};

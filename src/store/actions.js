@@ -1,12 +1,35 @@
-import {POST_READING, FETCH_READINGS} from './constants';
+import {
+  SET_READING,
+  CLEAR_READING,
+  POST_READING,
+  FETCH_READINGS,
+} from './constants';
 import {API_URL} from 'react-native-dotenv';
+import {getLastReading} from './selectors';
+
+const setReading = data => {
+  return {
+    type: SET_READING,
+    payload: {
+      ...data,
+    },
+  };
+};
+
+const clearReading = () => ({
+  type: CLEAR_READING,
+});
 
 /**
  * Call the API and post a reading
  * @param {object} reading
  */
-const postReading = reading => dispatch =>
+const postReading = () => (dispatch, getState) =>
   new Promise(async (resolve, reject) => {
+    const reading = {
+      ...getLastReading(getState()),
+    };
+
     try {
       const response = await fetch(`${API_URL}/readings`, {
         method: 'POST',
@@ -77,4 +100,4 @@ const fetchReadings = () => dispatch =>
     }
   });
 
-export {postReading, fetchReadings};
+export {setReading, clearReading, postReading, fetchReadings};

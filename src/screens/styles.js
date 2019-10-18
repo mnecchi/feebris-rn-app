@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 
+// Common Styles
+
 const labelText = {fontSize: 30, fontWeight: 'bold', color: '#444'};
 const fieldContainer = {
   justifyContent: 'center',
@@ -19,16 +21,28 @@ const iconInputContainer = {
   justifyContent: 'center',
 };
 
+const buttonContainer = {
+  padding: 8,
+  backgroundColor: 'rgba(60, 142, 183, 1)',
+  borderRadius: 8,
+  marginTop: 64,
+  width: '80%',
+  maxWidth: 600,
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
+const buttonText = {...labelText, color: 'white'};
+
+/**
+ * Temperature, cough and fever screens styles
+ */
 const homeStyle = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
+    alignItems: 'center',
   },
-  scrollContainer: {
-    flex: 1,
-    width: '100%',
-  },
-  scrollContent: {alignItems: 'center'},
   // TEMPERATURE
   temperatureContainer: fieldContainer,
   temperatureText: labelText,
@@ -54,28 +68,26 @@ const homeStyle = StyleSheet.create({
   feverText: {...labelText, paddingRight: 8},
   feverSwitchContainer: iconInputContainer,
   // BUTTON
-  buttonContainer: {
-    padding: 8,
-    backgroundColor: 'rgba(60, 142, 183, 1)',
-    borderRadius: 8,
-    marginTop: 64,
-    width: '80%',
-    maxWidth: 600,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {...labelText, color: 'white'},
+  buttonContainer,
+  buttonText,
 });
 
+/**
+ * Results screen styles
+ */
 const resultsStyle = StyleSheet.create({
   container: {flex: 1, flexDirection: 'column'},
+  topContainer: {
+    alignItems: 'center',
+    paddingBottom: 32,
+    borderColor: '#ccc',
+    borderWidth: 1,
+  },
+  // FLU CHECK RESULT
   fluResultContainer: {
     alignItems: 'center',
     marginTop: 32,
     marginHorizontal: 16,
-    paddingBottom: 32,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
   },
   fluResultText: {
     ...labelText,
@@ -85,6 +97,11 @@ const resultsStyle = StyleSheet.create({
   },
   fluResultNoFlu: {
     color: 'green',
+  },
+  // RESULTS TABLE
+  tableContainer: {
+    marginTop: 16,
+    marginHorizontal: 8,
   },
   readingsTable: {
     borderWidth: 1,
@@ -97,10 +114,9 @@ const resultsStyle = StyleSheet.create({
     margin: 8,
     textAlign: 'center',
   },
-  tableContainer: {
-    marginTop: 16,
-    marginHorizontal: 8,
-  },
+  // BUTTON
+  buttonContainer,
+  buttonText,
 });
 
 export {homeStyle, resultsStyle};

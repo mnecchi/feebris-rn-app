@@ -1,5 +1,10 @@
 import reducer from '../reducer';
-import {POST_READING, FETCH_READINGS} from '../constants';
+import {
+  CLEAR_READING,
+  SET_READING,
+  POST_READING,
+  FETCH_READINGS,
+} from '../constants';
 
 describe('reducer', () => {
   it('should return an empty object if state is undefined', () => {
@@ -13,6 +18,43 @@ describe('reducer', () => {
     expect(reducer(state, {type: 'Unknown', status: 'success'})).toBe(state);
   });
 
+  describe('SET_READING', () => {
+    it('set the reading in the state', () => {
+      const mockedReading = {
+        cough: false,
+        feverInLast5Days: true,
+        temperature: 36,
+      };
+
+      expect(
+        reducer(undefined, {
+          type: SET_READING,
+          payload: mockedReading,
+        }),
+      ).toEqual({
+        last: mockedReading,
+      });
+    });
+  });
+
+  describe('CLEAR_READING', () => {
+    const mockedReading = {
+      cough: false,
+      feverInLast5Days: true,
+      temperature: 36,
+    };
+
+    const state = {
+      last: mockedReading,
+    };
+
+    expect(
+      reducer(state, {
+        type: CLEAR_READING,
+      }).last,
+    ).toEqual({});
+  });
+
   describe('POST_READING', () => {
     const mockedReading = {
       id: 'abcdef1234',
@@ -23,7 +65,7 @@ describe('reducer', () => {
       createdAt: 1111111,
     };
 
-    it('should remove the last reading if status is error', () => {
+    it('should return the same state if status is error', () => {
       const state = {last: {...mockedReading}};
 
       expect(
@@ -33,8 +75,8 @@ describe('reducer', () => {
           payload: {
             message: 'Generic Error',
           },
-        }).last,
-      ).toBeUndefined();
+        }),
+      ).toEqual(state);
     });
 
     it('should set the last reading in the state', () => {
@@ -77,7 +119,7 @@ describe('reducer', () => {
       },
     ];
 
-    it('should remove the readings if status is error', () => {
+    it('should return the same state if status is error', () => {
       const state = {readings: mockedReadings};
 
       expect(
@@ -87,8 +129,8 @@ describe('reducer', () => {
           payload: {
             message: 'Generic Error',
           },
-        }).readings,
-      ).toBeUndefined();
+        }),
+      ).toEqual(state);
     });
 
     it('should set the list of reading in the state', () => {

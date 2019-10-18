@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render successfully disabled 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+      "margin": 16,
+      "maxWidth": "80%",
+      "textAlignVertical": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#444",
+        "fontSize": 30,
+        "fontWeight": "bold",
+        "paddingRight": 8,
+      }
+    }
+  >
+    Cough?
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginTop": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#444",
+          "fontSize": 30,
+          "fontWeight": "bold",
+          "paddingRight": 8,
+        }
+      }
+    >
+      🤧
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      disabled={true}
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "height": 31,
+          "width": 51,
+        }
+      }
+      value={true}
+    />
+  </View>
+</View>
+`;
+
+exports[`should render successfully enabled 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center",
+      "margin": 16,
+      "maxWidth": "80%",
+      "textAlignVertical": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#444",
+        "fontSize": 30,
+        "fontWeight": "bold",
+        "paddingRight": 8,
+      }
+    }
+  >
+    Cough?
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginTop": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#444",
+          "fontSize": 30,
+          "fontWeight": "bold",
+          "paddingRight": 8,
+        }
+      }
+    >
+      🤧
+    </Text>
+    <RCTSwitch
+      accessibilityRole="button"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "height": 31,
+          "width": 51,
+        }
+      }
+      value={true}
+    />
+  </View>
+</View>
+`;

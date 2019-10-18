@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render successfully disabled 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgba(60, 142, 183, 1)",
+      "borderRadius": 8,
+      "justifyContent": "center",
+      "marginTop": 64,
+      "maxWidth": 600,
+      "padding": 8,
+      "width": "80%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 30,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Title
+  </Text>
+</View>
+`;
+
+exports[`should render successfully enabled and not loading 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgba(60, 142, 183, 1)",
+      "borderRadius": 8,
+      "justifyContent": "center",
+      "marginTop": 64,
+      "maxWidth": 600,
+      "padding": 8,
+      "width": "80%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 30,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Title
+  </Text>
+</View>
+`;
+
+exports[`should render successfully loading 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgba(60, 142, 183, 1)",
+      "borderRadius": 8,
+      "justifyContent": "center",
+      "marginTop": 64,
+      "maxWidth": 600,
+      "padding": 8,
+      "width": "80%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 30,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Checking...
+  </Text>
+</View>
+`;

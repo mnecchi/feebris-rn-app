@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render successfully is flu 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "borderBottomColor": "#ccc",
+      "borderBottomWidth": 1,
+      "marginHorizontal": 16,
+      "marginTop": 32,
+      "paddingBottom": 32,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#444",
+          "fontSize": 30,
+          "fontWeight": "bold",
+        },
+        Object {
+          "color": "red",
+        },
+      ]
+    }
+  >
+    Sorry, you've got the Flu!
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#444",
+        "fontSize": 30,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    💊
+  </Text>
+</View>
+`;
+
+exports[`should render successfully is not flu 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "borderBottomColor": "#ccc",
+      "borderBottomWidth": 1,
+      "marginHorizontal": 16,
+      "marginTop": 32,
+      "paddingBottom": 32,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#444",
+          "fontSize": 30,
+          "fontWeight": "bold",
+        },
+        Object {
+          "color": "green",
+        },
+      ]
+    }
+  >
+    No Flu! Hooray!
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#444",
+        "fontSize": 30,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    🎉
+  </Text>
+</View>
+`;

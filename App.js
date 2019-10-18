@@ -2,8 +2,10 @@ import React from 'react';
 import {Text} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import Home from './src/screens/Home';
-import Results from './src/screens/Results';
+import TemperatureScreen from './src/screens/TemperatureScreen';
+import CoughScreen from './src/screens/CoughScreen';
+import FeverInLast5DaysScreen from './src/screens/FeverInLast5DaysScreen';
+import ResultsScreen from './src/screens/ResultsScreen';
 
 console.disableYellowBox = true;
 
@@ -15,15 +17,21 @@ const headerBackStyle = tintColor => ({
 
 const AppNavigator = createStackNavigator(
   {
-    Home: {
-      screen: Home,
+    Temperature: {
+      screen: TemperatureScreen,
+    },
+    Cough: {
+      screen: CoughScreen,
+    },
+    FeverInLast5Days: {
+      screen: FeverInLast5DaysScreen,
     },
     Results: {
-      screen: Results,
+      screen: ResultsScreen,
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Temperature',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: 'rgba(60, 142, 183, 1)',

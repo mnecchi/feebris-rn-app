@@ -1,13 +1,44 @@
-import {postReading, fetchReadings} from '../actions';
-import {POST_READING, FETCH_READINGS} from '../constants';
+import {setReading, clearReading, postReading, fetchReadings} from '../actions';
+import {
+  SET_READING,
+  CLEAR_READING,
+  POST_READING,
+  FETCH_READINGS,
+} from '../constants';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 const mockStore = configureMockStore([thunk]);
 
 afterEach(() => {
-  global.fetch.mockClear();
-  delete global.fetch;
+  if (global.fetch) {
+    global.fetch.mockClear();
+    delete global.fetch;
+  }
+});
+
+describe('setReading action creator', () => {
+  it('should return the action', () => {
+    const mockedReading = {temperature: 36, cough: false};
+    const store = mockStore({});
+    store.dispatch(setReading(mockedReading));
+    const [action] = store.getActions();
+    expect(action).toEqual({
+      type: SET_READING,
+      payload: mockedReading,
+    });
+  });
+});
+
+describe('clearReading action creator', () => {
+  it('should return the action', () => {
+    const store = mockStore({});
+    store.dispatch(clearReading());
+    const [action] = store.getActions();
+    expect(action).toEqual({
+      type: CLEAR_READING,
+    });
+  });
 });
 
 describe('postReading action creator', () => {
@@ -19,12 +50,12 @@ describe('postReading action creator', () => {
         json: () => ({message: 'Network Error'}),
       }),
     );
-    const store = mockStore({});
+    const store = mockStore({
+      last: {temperature: 38, cough: true, feverInLast5Days: true},
+    });
 
     try {
-      await store.dispatch(
-        postReading({temperature: 38, cough: true, feverInLast5Days: true}),
-      );
+      await store.dispatch(postReading());
     } catch (_) {
     } finally {
       const [action] = store.getActions();
@@ -54,16 +85,16 @@ describe('postReading action creator', () => {
         Promise.resolve({ok: true, json: () => mockedReading}),
       );
 
-    const store = mockStore({});
+    const store = mockStore({
+      last: {
+        temperature: mockedReading.temperature,
+        cough: mockedReading.cough,
+        feverInLast5Days: mockedReading.feverInLast5Days,
+      },
+    });
 
     try {
-      await store.dispatch(
-        postReading({
-          temperature: mockedReading.temperature,
-          cough: mockedReading.cough,
-          feverInLast5Days: mockedReading.feverInLast5Days,
-        }),
-      );
+      await store.dispatch(postReading());
     } catch (_) {
     } finally {
       const [action] = store.getActions();

@@ -5,11 +5,8 @@ exports[`should render successfully is flu 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "borderBottomColor": "#ccc",
-      "borderBottomWidth": 1,
       "marginHorizontal": 16,
       "marginTop": 32,
-      "paddingBottom": 32,
     }
   }
 >
@@ -48,11 +45,8 @@ exports[`should render successfully is not flu 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "borderBottomColor": "#ccc",
-      "borderBottomWidth": 1,
       "marginHorizontal": 16,
       "marginTop": 32,
-      "paddingBottom": 32,
     }
   }
 >

@@ -22,7 +22,7 @@ const ReadingsTable = ({readings, tableStyle, cellStyle, headerStyle}) => {
     <Table borderStyle={tableStyle}>
       <Row
         style={headerStyle}
-        data={['date', 'temp.', 'cough', '5 days fever', 'is flu']}
+        data={['date', 'temp.', 'cough', '5 days fever', 'flu']}
         flexArr={[2, 1, 1, 1, 1]}
         textStyle={cellStyle}
       />

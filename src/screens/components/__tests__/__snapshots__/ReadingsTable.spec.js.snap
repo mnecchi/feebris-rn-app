@@ -210,7 +210,7 @@ exports[`should render successfully should display a table with results 1`] = `
           ]
         }
       >
-        is flu
+        flu
       </Text>
     </View>
   </View>
